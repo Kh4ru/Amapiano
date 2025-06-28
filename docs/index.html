@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Amapiano</title>
+<link rel="icon" type="image/x-icon" href="https://peinture-pour-tous.com/wp-content/uploads/2020/12/piano-favicon.svg">
 <style>
   /* Reset & base */
   *, *::before, *::after {
@@ -17,6 +18,8 @@
     line-height: 1.6;
     min-height: 100vh;
     scroll-behavior: smooth;
+    position: relative;
+    padding-bottom: 6rem; /* espace pour le bouton */
   }
   a {
     color: #1db954;
@@ -90,19 +93,20 @@
     height: auto;
   }
 
-  /* Download button fixed */
+  /* Download button centered bottom */
   .btn-download {
     position: fixed;
-    right: 2rem;
+    left: 50%;
     bottom: 2rem;
+    transform: translateX(-50%);
     background: #1db954;
     color: #121212;
     font-weight: 700;
-    padding: 1rem 1.8rem;
+    padding: 1rem 2.2rem;
     border-radius: 40px;
     box-shadow: 0 6px 12px rgba(29,185,84,0.7);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     transition: background-color 0.3s ease;
     z-index: 1000;
   }
@@ -127,10 +131,9 @@
       margin: 3rem 1rem 5rem;
     }
     .btn-download {
-      right: 1rem;
-      bottom: 1rem;
-      padding: 0.9rem 1.4rem;
+      padding: 0.9rem 1.6rem;
       font-size: 1rem;
+      bottom: 1rem;
     }
     header h1 {
       font-size: 1.6rem;
@@ -141,7 +144,7 @@
 <body>
 
 <header>
-  <h1>🎶 Amapiano – YouTube Downloader</h1>
+  <h1>Amapiano</h1>
 </header>
 
 <main>
@@ -170,7 +173,7 @@
 
   <section>
     <h2>Author</h2>
-    <p>Made by <strong>Alexis Senepart</strong></p>
+    <p>Made by <strong>Senepart Alexis</strong></p>
     <p><a href="LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></p>
   </section>
 </main>
@@ -180,13 +183,13 @@
   class="btn-download"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Download Amapiano latest release executable"
+  aria-label="Download Amapiano"
 >
   Download
 </a>
 
 <footer>
-  &copy; 2025 Senepart Alexis. All rights reserved.
+  &copy; 2025 Alexis Senepart. All rights reserved.
 </footer>
 
 <script>
