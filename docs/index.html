@@ -1,132 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amapiano – YouTube Downloader</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #121212;
-      color: #eee;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background: #1db954;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-weight: 700;
-      font-size: 1.8rem;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amapiano – YouTube Downloader</title>
+<style>
+  /* Reset & base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: #121212;
+    color: #eee;
+    line-height: 1.6;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #1db954;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+
+  /* Container */
+  main {
+    max-width: 700px;
+    margin: 4rem auto 6rem;
+    padding: 0 1rem;
+  }
+
+  header {
+    background: #1db954;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #121212;
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  h2 {
+    color: #1db954;
+    margin-bottom: 0.8rem;
+    border-left: 4px solid #1db954;
+    padding-left: 0.5rem;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.6rem;
+  }
+  ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #1db954;
+    font-weight: bold;
+  }
+
+  /* Skills icon */
+  .skills {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .skills img {
+    width: 80px;
+    height: auto;
+  }
+
+  /* Download button fixed */
+  .btn-download {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    background: #1db954;
+    color: #121212;
+    font-weight: 700;
+    padding: 1rem 1.8rem;
+    border-radius: 40px;
+    box-shadow: 0 6px 12px rgba(29,185,84,0.7);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+  }
+  .btn-download:hover,
+  .btn-download:focus {
+    background-color: #17a44b;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: #222;
+    color: #666;
+    font-size: 0.9rem;
+    user-select: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
     main {
-      flex: 1;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    section {
-      margin-bottom: 2rem;
-    }
-    h2 {
-      color: #1db954;
-      margin-bottom: 0.5rem;
-    }
-    ul {
-      list-style: none;
-      padding-left: 1rem;
-    }
-    ul li::before {
-      content: "✅";
-      margin-right: 0.5rem;
-    }
-    footer {
-      background: #222;
-      color: #666;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-    a {
-      color: #1db954;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .skills {
-      text-align: center;
-      margin-bottom: 2rem;
+      margin: 3rem 1rem 5rem;
     }
     .btn-download {
-      display: inline-block;
-      padding: 0.6em 1.2em;
-      background-color: #1db954;
-      color: #121212;
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-      margin-top: 0.5rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.9rem 1.4rem;
+      font-size: 1rem;
     }
-    .btn-download:hover {
-      background-color: #17a44b;
+    header h1 {
+      font-size: 1.6rem;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>🎶 Amapiano – YouTube Downloader</h1>
-  </header>
+<header>
+  <h1>🎶 Amapiano – YouTube Downloader</h1>
+</header>
 
-  <main>
-    <div class="skills">
-      <a href="https://skillicons.dev" target="_blank" rel="noopener noreferrer">
-        <img src="https://skillicons.dev/icons?i=py,windows" alt="Skills" />
-      </a>
-    </div>
+<main>
+  <div class="skills">
+    <a href="https://skillicons.dev" target="_blank" rel="noopener noreferrer" aria-label="Skills icons">
+      <img src="https://skillicons.dev/icons?i=py,windows" alt="Python and Windows icons" />
+    </a>
+  </div>
 
-    <section>
-      <h2>Features</h2>
-      <ul>
-        <li>Download YouTube videos (MP4) or audio (MP3)</li>
-        <li>Windows standalone .exe (no Python needed)</li>
-        <li>Fast and easy to use</li>
-        <li>Personal & commercial use allowed</li>
-      </ul>
-    </section>
+  <section>
+    <h2>Features</h2>
+    <ul>
+      <li>Download YouTube videos (MP4) or audio (MP3)</li>
+      <li>Windows standalone .exe (no Python needed)</li>
+      <li>Fast and easy to use</li>
+      <li>Personal & commercial use allowed</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>Download</h2>
-      <a class="btn-download" href="https://github.com/your-username/amapiano/releases/latest/download/amapiano.exe" target="_blank" rel="noopener noreferrer">
-        Download Latest Release (.exe)
-      </a>
-    </section>
+  <section>
+    <h2>Disclaimer</h2>
+    <p>
+      Use responsibly. This tool must comply with <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">YouTube's Terms of Service</a>.
+    </p>
+  </section>
 
-    <section>
-      <h2>Disclaimer</h2>
-      <p>
-        Use responsibly. This tool must comply with <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">YouTube's Terms of Service</a>.
-      </p>
-    </section>
+  <section>
+    <h2>Author</h2>
+    <p>Made by <strong>YourName</strong></p>
+    <p><a href="LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></p>
+  </section>
+</main>
 
-    <section>
-      <h2>Author</h2>
-      <p>Made by <strong>YourName</strong></p>
-      <p><a href="LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></p>
-    </section>
-  </main>
+<a
+  href="https://github.com/your-username/amapiano/releases/latest/download/amapiano.exe"
+  class="btn-download"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Download Amapiano latest release executable"
+>
+  Download .exe
+</a>
 
-  <footer>
-    &copy; 2025 YourName. All rights reserved.
-  </footer>
+<footer>
+  &copy; 2025 YourName. All rights reserved.
+</footer>
+
+<script>
+  // Fade-in animation on scroll for sections
+  const sections = document.querySelectorAll('section');
+
+  function checkVisibility() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+
+      if (top < triggerBottom) {
+        section.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('load', checkVisibility);
+</script>
 
 </body>
 </html>
