@@ -4,4 +4,8 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "pytube>=15.0.0",
+    "pytubefix>=9.2.2",
+    "youtube-search>=2.1.2",
+]
