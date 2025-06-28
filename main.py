@@ -51,22 +51,18 @@ def download_video(id, title):
         messagebox.showerror("Error", f"Download failed: {str(e)}")
 
 def show_video(video, row):
-    # Create frame for each video
     video_frame = gui.Frame(results_frame, bg="#f0f0f0", relief="ridge", bd=1)
     video_frame.grid(row=row, column=0, sticky="ew", padx=5, pady=2)
     video_frame.grid_columnconfigure(0, weight=1)
-    
-    # Title label
+  
     title_label = gui.Label(video_frame, text=video.title, font=("Arial", 10, "bold"), 
                            bg="#f0f0f0", wraplength=400, justify="left")
     title_label.grid(row=0, column=0, sticky="w", padx=10, pady=(5, 0))
     
-    # Channel label
     channel_label = gui.Label(video_frame, text=f"by {video.channel}", font=("Arial", 8), 
                              fg="gray", bg="#f0f0f0")
     channel_label.grid(row=1, column=0, sticky="w", padx=10, pady=(0, 5))
     
-    # Download button
     download_btn = gui.Button(video_frame, text="Download MP3", 
                              command=lambda: download_video(video.id, video.title),
                              bg="#4CAF50", fg="white", font=("Arial", 8, "bold"),
