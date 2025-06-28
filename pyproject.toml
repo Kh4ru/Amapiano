@@ -5,6 +5,7 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 requires-python = ">=3.11"
 dependencies = [
+    "pyinstaller==6.11.1",
     "pytube>=15.0.0",
     "pytubefix>=9.2.2",
     "youtube-search>=2.1.2",
