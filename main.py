@@ -123,9 +123,9 @@ header_frame = gui.Frame(window, bg="#2196F3", height=80)
 header_frame.pack(fill="x", padx=0, pady=0)
 header_frame.pack_propagate(False)
 
-# Logo and title
 try:
     logo_image = gui.PhotoImage(file="logo.png")
+    logo_image = logo_image.subsample(2, 2)  # Resize logo to half size
     logo_label = gui.Label(header_frame, image=logo_image, bg="#2196F3")
     logo_label.pack(side="left", padx=20, pady=10)
 except:
