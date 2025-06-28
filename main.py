@@ -22,7 +22,6 @@ def download_video(id, title):
     try:
         path = filedialog.askdirectory()
         if path:
-            # Show progress
             progress_window = gui.Toplevel(window)
             progress_window.title("Downloading...")
             progress_window.geometry("300x100")
@@ -75,10 +74,8 @@ def search_videos():
         messagebox.showwarning("Warning", "Please enter a search term")
         return
     
-    # Clear previous results
     clear_results()
     
-    # Show loading
     loading_label = gui.Label(results_frame, text="Searching...", font=("Arial", 12))
     loading_label.grid(row=0, column=0, pady=20)
     
@@ -86,7 +83,6 @@ def search_videos():
         try:
             results = YoutubeSearch(query, max_results=10).to_dict()
             
-            # Clear loading message
             loading_label.destroy()
             
             if not results:
@@ -107,21 +103,19 @@ def search_videos():
     
     threading.Thread(target=search_thread, daemon=True).start()
 
-# Create main window
 window = gui.Tk()
 window.title("Amapiano YouTube Downloader")
 window.geometry("600x700")
 window.configure(bg="#ffffff")
 window.resizable(True, True)
 
-# Header frame
 header_frame = gui.Frame(window, bg="#2196F3", height=80)
 header_frame.pack(fill="x", padx=0, pady=0)
 header_frame.pack_propagate(False)
 
 try:
     logo_image = gui.PhotoImage(file="logo.png")
-    logo_image = logo_image.subsample(2, 2)  # Resize logo to half size
+    logo_image = logo_image.subsample(2, 2)
     logo_label = gui.Label(header_frame, image=logo_image, bg="#2196F3")
     logo_label.pack(side="left", padx=20, pady=10)
 except:
@@ -131,7 +125,6 @@ title_label = gui.Label(header_frame, text="Amapiano Downloader",
                        font=("Arial", 18, "bold"), fg="white", bg="#2196F3")
 title_label.pack(side="left", padx=10, pady=20)
 
-# Search frame
 search_frame = gui.Frame(window, bg="#ffffff", pady=20)
 search_frame.pack(fill="x", padx=20)
 
@@ -139,7 +132,6 @@ search_label = gui.Label(search_frame, text="Search for music:",
                         font=("Arial", 12), bg="#ffffff")
 search_label.pack(anchor="w", pady=(0, 5))
 
-# Search input frame
 input_frame = gui.Frame(search_frame, bg="#ffffff")
 input_frame.pack(fill="x")
 
@@ -157,7 +149,6 @@ clear_btn = gui.Button(input_frame, text="Clear", command=clear_results,
                       relief="flat", padx=20, pady=8)
 clear_btn.pack(side="right", padx=(5, 0))
 
-# Results frame with scrollbar
 canvas_frame = gui.Frame(window, bg="#ffffff")
 canvas_frame.pack(fill="both", expand=True, padx=20, pady=(0, 20))
 
@@ -176,16 +167,13 @@ canvas.configure(yscrollcommand=scrollbar.set)
 canvas.pack(side="left", fill="both", expand=True)
 scrollbar.pack(side="right", fill="y")
 
-# Configure grid weights
 results_frame.grid_columnconfigure(0, weight=1)
 
-# Bind mousewheel to canvas
 def on_mousewheel(event):
     canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
 canvas.bind_all("<MouseWheel>", on_mousewheel)
 
-# Status bar
 status_frame = gui.Frame(window, bg="#f0f0f0", height=30)
 status_frame.pack(fill="x", side="bottom")
 status_frame.pack_propagate(False)
