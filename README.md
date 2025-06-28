@@ -16,15 +16,22 @@ Built with Python, packed as a `.exe` using PyInstaller.
 
 ---
 
+## ⬇️ Download
+
+👉 [Download the latest release](https://github.com/your-username/amapiano/releases/latest)  
+No install needed — just run the `.exe`
+
+---
+
 ## 🚀 Usage
 
 1. Run `amapiano.exe`  
-2. Enter your search
+2. Enter your search  
 3. Done ✅
 
 ---
 
-## 🔧 Build (for copy)
+## 🔧 Build (for developers)
 
 ```bash
 pyinstaller --onefile --icon=icon.ico main.py
