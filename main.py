@@ -104,7 +104,7 @@ def search_videos():
     threading.Thread(target=search_thread, daemon=True).start()
 
 window = gui.Tk()
-window.title("Amapiano YouTube Downloader")
+window.title("Amapiano")
 window.geometry("600x700")
 window.configure(bg="#ffffff")
 window.resizable(True, True)
@@ -115,13 +115,13 @@ header_frame.pack_propagate(False)
 
 try:
     logo_image = gui.PhotoImage(file="logo.png")
-    logo_image = logo_image.subsample(2, 2)
+    logo_image = logo_image.subsample(4, 4)
     logo_label = gui.Label(header_frame, image=logo_image, bg="#2196F3")
     logo_label.pack(side="left", padx=20, pady=10)
 except:
     pass
 
-title_label = gui.Label(header_frame, text="Amapiano Downloader", 
+title_label = gui.Label(header_frame, text="Music Downloader", 
                        font=("Arial", 18, "bold"), fg="white", bg="#2196F3")
 title_label.pack(side="left", padx=10, pady=20)
 
