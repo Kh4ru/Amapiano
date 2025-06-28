@@ -182,4 +182,8 @@ status_label = gui.Label(status_frame, text="Ready to search",
                         font=("Arial", 9), bg="#f0f0f0", fg="gray")
 status_label.pack(side="left", padx=10, pady=5)
 
+credits_label = gui.Label(status_frame, text="Created by Alexis Senepart", 
+                         font=("Arial", 9), bg="#f0f0f0", fg="gray")
+credits_label.pack(side="right", padx=10, pady=5)
+
 window.mainloop()
